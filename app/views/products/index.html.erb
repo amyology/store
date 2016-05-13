@@ -1,0 +1,27 @@
+<h1>Soaps.</h1>
+
+<div class="row">
+
+  <% @products.each do |product| %>
+
+  <div class="product-box col-md-4 col-lg-4">
+
+<!-- <a href="/show/<%= product.id %>"> -->
+
+    <img src="<%= product.image %>" alt="<%= product.description %>" class="img-responsive center-block">
+    <!-- </a> --> 
+    <br>
+
+    <div class="description-box">
+      <span id="bigger-text">
+        <%= link_to product.name.upcase, "/store/#{product.id}" %>
+      </span> <br>
+      <b>$<%= product.price %></b> <br>
+      <i><%= product.description %></i>
+    </div>
+
+  </div>
+
+<% end %>
+
+</div>

@@ -25,6 +25,17 @@ $gray:  #4d4d4d;
   border-radius: 5px;
 }
 
+.form-box {
+  border: solid $purplish 15px;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+  background-color: #fff;
+  color: $gray;
+  border-radius: 25px;
+  width: 300px;
+}
+
 .header {
   background-color: #fff;
 }
@@ -41,4 +52,21 @@ h1{
 
 body {
   background-color: #eee6ff;
+}
+
+span#bigger-text {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: $purplish;
+}
+
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid $gray;
+}
+
+input[type=submit] {
+  background-color: $purplish;
+  border: 2px solid $gray;
+  color: #fff;
 }
