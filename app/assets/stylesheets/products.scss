@@ -1,24 +1,43 @@
-@import url(https://fonts.googleapis.com/css?family=Leckerli+One);
+@import url(https://fonts.googleapis.com/css?family=Leckerli+One|Montserrat);
 
 $header-font: 'Leckerli One';
+$alternate-header-font: 'Montserrat';
 $purplish: #9999ff;
 $gray:  #4d4d4d;
+$purple-border: solid $purplish 15px;
+$light-gray: #f2f2f2;
+
+.no-rounded-corners{
+  border-radius: 0px;
+}
+
+.navbar-inverse {
+  background-color: $gray;
+  border: 0;
+}
+
+.navbar-btn {
+  background-color: $purplish;
+  border: 0;
+  color: #fff;
+}
+
+.center {
+  text-align: center;
+}
 
 .product-box {
-  border: solid $purplish 15px;
+  border: $purple-border;
   padding: 10px;
-  margin: 10px;
-  float: left;
-  text-align: center;
+  margin: 7px;
   background-color: #fff;
   color: $gray;
   border-radius: 25px;
-  height: 400px;
-  width: 300px;
+  width: 275px;
 }
 
 .description-box {
-  background-color: #f2f2f2;
+  background-color: $light-gray;
   padding: 5px;
   margin: 5px;
   text-align: left;
@@ -26,32 +45,37 @@ $gray:  #4d4d4d;
 }
 
 .form-box {
-  border: solid $purplish 15px;
+  border: $purple-border;
+  border-radius: 25px;
   padding: 10px;
   margin: 10px;
   text-align: left;
   background-color: #fff;
   color: $gray;
-  border-radius: 25px;
-  width: 300px;
 }
 
-.header {
+.individual {
+  border: $purple-border;
+  padding: 10px; 
+  margin: 10px;
   background-color: #fff;
+  color: $gray;
+  border-radius: 25px;
 }
 
-h1{
+.thumbnail {
+  height: 230px;
+  border: 0;
+}
+
+h1 {
   color: $gray;
   font-size: 5em;
   font-family: $header-font;
 }
 
-.container {
-  float: right;
-}
-
-body {
-  background-color: #eee6ff;
+h2 {
+  font-family: $alternate-header-font;
 }
 
 span#bigger-text {
@@ -61,12 +85,40 @@ span#bigger-text {
 }
 
 input[type=text] {
-  border: none;
-  border-bottom: 2px solid $gray;
+  border: 2px solid $gray;
 }
 
 input[type=submit] {
   background-color: $purplish;
-  border: 2px solid $gray;
+  border: none;
   color: #fff;
+}
+
+a:link {
+  color: $purplish;
+}
+
+a:visited {
+  color: $gray;
+}
+
+a:hover {
+  color: $purplish;
+  text-decoration: none;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand:hover {
+    color: $purplish;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: $purplish;
 }

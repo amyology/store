@@ -1,23 +1,30 @@
-<div class="form-box">
-<%= form_tag '/store', method: :post do %>
-
-  <%= label_tag :name %>
-  <%= text_field_tag :name %> <br>
-
-  <%= label_tag :price %>
-  <%= text_field_tag :price %> <br>
-
-  <%= label_tag :image %>
-  <%= text_field_tag :image %> <br>
-  
-  <%= label_tag :description %>
-  <%= text_field_tag :description %> <br>
-
-  <%= label_tag :inventory %>
-  <%= text_field_tag :inventory %> <br>
-
-  <%= submit_tag 'Add' %>
-<% end %>
+<div class="center">
+  <h2>Add A Product</h2>
 </div>
-</div>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="form-box col-md-6">
+    <%= form_tag '/store', method: :post do %>
+
+      <%= label_tag :name %>
+      <%= text_field_tag :name %> <br>
+
+      <%= label_tag :price %>
+      <%= text_field_tag :price %> <br>
+
+      <%= label_tag :image %>
+      <%= text_field_tag :image %> <br>
+      
+      <%= label_tag :description %>
+      <%= text_field_tag :description %> <br>
+
+      <%= label_tag :inventory %>
+      <%= text_field_tag :inventory %> <br>
+
+      <%= submit_tag 'Add' %>
+    <% end %>
+  </div>
+  <div class="col-md-3"></div>
+
 </div>

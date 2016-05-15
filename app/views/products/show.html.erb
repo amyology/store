@@ -1,8 +1,32 @@
-<div class="product-box">
-  <img src="<%= @product.image %>"> <br>
-  <%= @product.name %> <br>
-  <%= @product.price %> <br>
-  <div class="description-box">
-    <%= @product.description %> <br>
+<div class="center">
+
+<h1>Soaps.</h1>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4"></div>
+
+  <div class="individual col-lg-4 col-md-4 col-sm-4">
+
+    <img src="<%= @product.image %>" class="img-responsive center-block" alt="<%= @product.name %>"> <br>
+
+    <div class="description-box">
+      <span id="bigger-text"><%= @product.name.upcase %></span> <br>
+      <b>$<%= @product.price %></b> <br>
+      <i><%= @product.description %></i> <br>
+    </div>
+
   </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-4"></div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4"></div>
+  <div class="col-lg-4 col-md-4 col-sm-4">
+    <%= link_to "Edit", "/store/#{@product.id}/edit" %> |
+    <%= link_to "Delete", "/store/#{@product.id}", method: :delete %>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-4"></div>
+</div>
+
 </div>
