@@ -11,8 +11,11 @@
 
     <div class="description-box">
       <span id="bigger-text"><%= @product.name.upcase %></span> <br>
-      <b>$<%= @product.price %></b> <br>
-      <i><%= @product.description %></i> <br>
+      Product Description: <i><%= @product.description %></i> <br><br>
+      Price: <%= number_to_currency(@product.price) %> <br>
+      Tax: <%= number_to_currency(@product.tax) %> <br>
+      <b>Total: <%= number_to_currency(@product.total) %></b> <br><br>
+      <font color="red"><%= @product.sale_message %></font>
     </div>
 
   </div>
