@@ -1,10 +1,31 @@
 class ProductsController < ApplicationController
   def index
-    @products =  Product.all
+    @products = Product.all
+    sort = params[:sort]
+    sort_order = params[:sort_order]
+    sale = params[:sale]
+
+    if sale
+      @products = @products.where("price < ?", sale)
+    end
+
+    if sort && sort_order
+      @products = @products.order(sort => sort_order) #Use hash rocket because it is not a symbol
+    elsif sort
+      @products = @products.order(order) 
+    else 
+      @products = Product.all
+    end
   end
 
   def show
     @product = Product.find(params[:id])
+  end
+
+  def random
+    @product = Product.all.sample
+
+    redirect_to "/store/#{@product.id}"
   end
 
   def new
