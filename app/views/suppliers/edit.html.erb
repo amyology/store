@@ -1,0 +1,23 @@
+<div class="center">
+  <h2>Update Supplier Info</h2>
+</div>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="form-box col-md-6">
+    <%= form_tag "/suppliers/#{@supplier.id}", method: :patch do %>
+
+      <%= label_tag :name %>
+      <%= text_field_tag :name, @supplier.name  %> <br>
+
+      <%= label_tag :email %>
+      <%= text_field_tag :email, @supplier.email %> <br>
+
+      <%= label_tag :phone %>
+      <%= text_field_tag :phone, @supplier.phone %> <br>
+
+      <%= submit_tag 'Update' %>
+    <% end %>
+  </div>
+  <div class="col-md-3"></div>
+</div>

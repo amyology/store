@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get '/' => 'products#index'
+  devise_for :users
+  root to: 'products#index'
   get '/store' => 'products#index'
 
   get '/store/random' => 'products#random'
@@ -14,10 +15,21 @@ Rails.application.routes.draw do
 
   delete '/store/:id' => 'products#destroy'
 
-  get '/suppliers/new' => 'products#new'
-  post '/suppliers' => 'products#create'
+  get '/suppliers/new' => 'suppliers#new'
+  post '/suppliers' => 'suppliers#create'
 
   get '/suppliers/:id' => 'suppliers#show'
 
+  get '/suppliers/:id/edit' => 'suppliers#edit'
+  patch '/suppliers/:id' => 'suppliers#update'
+
+  delete '/suppliers/:id' => 'suppliers#destroy'
+
+  get '/orders/:id' => 'orders#show'
+
+  post '/orders' => 'orders#create'
+
+  post '/cart' => 'carted_products#create'
+  get '/cart' => 'carted_products#show'
 
 end

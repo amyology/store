@@ -1,0 +1,12 @@
+<div class="individual center">
+<%= image_tag @product.img_preview %><br><br>
+
+Order number: <%= @order.id %><br>
+Product: <%= @order.product.name %><br>
+Quantity purchased: <%= @order.quantity %><br>
+User: <%= @order.user.email %><br>
+Subtotal: <%= number_to_currency(@order.subtotal) %><br>
+Tax: <%= number_to_currency(@order.tax) %><br>
+Total: <%= number_to_currency(@order.total) %><br>
+
+</div>

@@ -4,9 +4,10 @@ class ProductsController < ApplicationController
     sort = params[:sort]
     sort_order = params[:sort_order]
     sale = params[:sale]
+    category_name = params[:category_name]
 
-    if sale
-      @products = @products.where("price < ?", sale)
+    if category_name
+      @products = Category.find_by(name: category_name).products
     end
 
     if sort && sort_order
@@ -16,6 +17,10 @@ class ProductsController < ApplicationController
     else 
       @products = Product.all
     end
+
+    if sale
+      @products = @products.where("price < ?", sale)
+    end  
   end
 
   def show

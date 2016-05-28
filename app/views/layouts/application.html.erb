@@ -33,7 +33,19 @@
             <li><a href="?sale=15">Sale Products</a></li>
             <li><a href="/store/random">Random Product</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <% Category.all.each do |category| %>
+              <li><a href="/?category_name=<%= category.name %>"><%= category.name %></a></li>
+            <% end %>
+            <li role="separator" class="divider"></li>
+
+            <li>
+              <% if user_signed_in? %>
+                <%= link_to 'Sign Out', '/users/sign_out', method: :delete %>
+              <% else %> 
+                <%= link_to 'Sign In', '/users/sign_in' %>
+                <%= link_to 'Sign Up', '/users/sign_up' %>
+              <% end %>
+            </li>
           </ul>
         </li>
       </ul>

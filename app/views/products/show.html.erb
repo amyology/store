@@ -2,27 +2,44 @@
 
 <h1>Soaps.</h1>
 
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4"></div>
+<div class="individual">
 
-  <div class="individual col-lg-4 col-md-4 col-sm-4">
+  <div class="row">
+    <% @product.images.each do |image| %>
+      <img src="<%= image.src %>" class="img-responsive center-block" alt="<%= @product.name %>"><br>
+    <% end %>
+  </div>
 
-    <img src="<%= @product.image %>" class="img-responsive center-block" alt="<%= @product.name %>"> <br>
-
-    <div class="description-box">
+  <div class="row description-box">
+    <div class="col-lg-6 col-md-6 col-sm-6">
       <span id="bigger-text"><%= @product.name.upcase %></span> <br>
-      Product Description: <i><%= @product.description %></i> <br><br>
+      Product Description: <i><%= @product.description %></i> <br>
+      Supplier: <%= @product.supplier.name %> <br>
+      Category: 
+      <% @product.categories.each do |category_name| %>
+        <%= category_name.name %>
+      <% end %><br><br>
       Price: <%= number_to_currency(@product.price) %> <br>
       Tax: <%= number_to_currency(@product.tax) %> <br>
       <b>Total: <%= number_to_currency(@product.total) %></b> <br><br>
-      <font color="red"><%= @product.sale_message %></font>
+      <font color="red"><%= @product.sale_message %></font><br>
     </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <span id="bigger-text">PURCHASE</span><br>
+      <%= form_tag '/cart', method: :post do %>
 
+        <%= hidden_field_tag :product_id, @product.id %><br>
+
+        <%= hidden_field_tag :product_name, @product.name %><br>
+
+        <%= label_tag :quantity %>
+        <%= text_field_tag :quantity %><br>
+
+        <%= submit_tag 'Add to Cart', class: "btn btn-default" %>
+      <% end %>
+    </div>
   </div>
-
-  <div class="col-lg-4 col-md-4 col-sm-4"></div>
 </div>
-
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4"></div>
   <div class="col-lg-4 col-md-4 col-sm-4">
@@ -31,5 +48,4 @@
   </div>
   <div class="col-lg-4 col-md-4 col-sm-4"></div>
 </div>
-
 </div>

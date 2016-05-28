@@ -1,3 +1,17 @@
-Supplier: <%= @supplier.name %><br>
-Email: <%= @supplier.email %><br>
-Phone: <%= @supplier.phone %>
+<div class="center">
+  <h2>Supplier</h2>
+</div>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="form-box col-md-6">
+    <b>Name:</b> <%= @supplier.name %><br>
+    <b>Email:</b> <%= @supplier.email %><br>
+    <b>Phone:</b> <%= @supplier.phone %> <br>
+    <div class="center">
+      <%= link_to "Edit", "/suppliers/#{@supplier.id}/edit" %> |
+      <%= link_to "Delete", "/suppliers/#{@supplier.id}", method: :delete %> 
+    </div>
+  </div>
+<div class="col-md-3"></div>
+</div>
