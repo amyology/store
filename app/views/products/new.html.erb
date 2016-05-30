@@ -2,25 +2,31 @@
   <h2>Add A Product</h2>
 </div>
 
+<div class="center">
+  <% @product.errors.full_messages.each do |error| %>
+    <%= error %> <br>
+  <% end %>
+</div>
+
 <div class="row">
   <div class="col-md-3"></div>
   <div class="form-box col-md-6">
     <%= form_tag '/store', method: :post do %>
 
       <%= label_tag :name %>
-      <%= text_field_tag :name %> <br>
+      <%= text_field_tag :name, @product.name %> <br>
 
       <%= label_tag :price %>
-      <%= text_field_tag :price %> <br>
+      <%= text_field_tag :price, @product.price %> <br>
 
       <%= label_tag :image %>
       <%= text_field_tag :image %> <br>
       
       <%= label_tag :description %>
-      <%= text_field_tag :description %> <br>
+      <%= text_field_tag :description, @product.description %> <br>
 
       <%= label_tag :inventory %>
-      <%= text_field_tag :inventory %> <br>
+      <%= text_field_tag :inventory, @product.inventory %> <br>
 
       <%= submit_tag 'Add' %>
     <% end %>

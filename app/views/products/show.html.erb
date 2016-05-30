@@ -26,16 +26,20 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6">
       <span id="bigger-text">PURCHASE</span><br>
-      <%= form_tag '/cart', method: :post do %>
+      <% if user_signed_in? %>
+        <%= form_tag '/carted_products', method: :post do %>
 
-        <%= hidden_field_tag :product_id, @product.id %><br>
+          <%= hidden_field_tag :product_id, @product.id %><br>
 
-        <%= hidden_field_tag :product_name, @product.name %><br>
+          <%= hidden_field_tag :product_name, @product.name %><br>
 
-        <%= label_tag :quantity %>
-        <%= text_field_tag :quantity %><br>
+          <%= label_tag :quantity %>
+          <%= text_field_tag :quantity %><br>
 
-        <%= submit_tag 'Add to Cart', class: "btn btn-default" %>
+          <%= submit_tag 'Add to Cart', class: "btn btn-default" %>
+        <% end %>
+      <% else %>
+        <%= link_to 'Sign In', '/users/sign_in' %> or <%= link_to 'Sign Up', '/users/sign_up' %>
       <% end %>
     </div>
   </div>
@@ -43,8 +47,10 @@
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4"></div>
   <div class="col-lg-4 col-md-4 col-sm-4">
-    <%= link_to "Edit", "/store/#{@product.id}/edit" %> |
-    <%= link_to "Delete", "/store/#{@product.id}", method: :delete %>
+    <% if user_signed_in? && current_user.admin %>
+      <%= link_to "Edit", "/store/#{@product.id}/edit" %> |
+      <%= link_to "Delete", "/store/#{@product.id}", method: :delete %>
+    <% end %>
   </div>
   <div class="col-lg-4 col-md-4 col-sm-4"></div>
 </div>

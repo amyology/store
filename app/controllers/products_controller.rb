@@ -1,21 +1,29 @@
 class ProductsController < ApplicationController
+
+before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @products = Product.all
     sort = params[:sort]
     sort_order = params[:sort_order]
     sale = params[:sale]
     category_name = params[:category_name]
-
-    if category_name
-      @products = Category.find_by(name: category_name).products
-    end
+    search_term = params[:search_term]
 
     if sort && sort_order
       @products = @products.order(sort => sort_order) #Use hash rocket because it is not a symbol
     elsif sort
-      @products = @products.order(order) 
+      @products = @products.order(order)
     else 
       @products = Product.all
+    end
+
+    if search_term
+      @products = @products.where("name ILIKE ? OR description ILIKE ?", "%#{search_term}%", "%#{search_term}%")
+    end
+
+    if category_name
+      @products = Category.find_by(name: category_name).products
     end
 
     if sale
@@ -34,20 +42,27 @@ class ProductsController < ApplicationController
   end
 
   def new
-
+    @product = Product.new
   end
 
   def create
-    @product = Product.create(
+    @product = Product.new(
       name: params[:name],
       price: params[:price],
-      image: params[:image],
       description: params[:description],
       inventory: params[:inventory]
     )
 
-    flash[:success] = "Successfully created."
-    redirect_to "/store/#{@product.id}"
+    if @product.save
+
+      Image.create(src: params[:image], product_id: @product.id) if params[:image] != ""
+
+      flash[:success] = "Successfully created."
+      redirect_to "/store/#{@product.id}"
+
+    else
+      render :new
+    end
   end
 
   def edit
@@ -59,13 +74,18 @@ class ProductsController < ApplicationController
     @product.update(
       name: params[:name],
       price: params[:price],
-      image: params[:image],
       description: params[:description],
       inventory: params[:inventory]
     )
 
-    flash[:success] = "Successfully updated."
-    redirect_to "/store/#{@product.id}"
+    if @product.save
+
+      flash[:success] = "Successfully updated."
+      redirect_to "/store/#{@product.id}"
+
+    else 
+      render :new
+    end
   end
 
   def destroy
@@ -75,4 +95,5 @@ class ProductsController < ApplicationController
     flash[:warning] = "Successfully deleted."
     redirect_to "/"
   end
+
 end

@@ -1,0 +1,6 @@
+<% @cart.each do |cart_item| %>
+  <%= cart_item.product.name %> <%= cart_item.quantity %> <%= cart_item.product.price %>
+  <% link_to 'Remove', "/carted_products/#{cart_item.id}", method: :delete %>
+<% end %>
+
+<% link_to 'Purchase', '/orders', method: :post, class: "btn btn-default" %>

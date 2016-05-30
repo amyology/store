@@ -2,19 +2,27 @@
   <h2>Update Product Info</h2>
 </div>
 
+<div class="center">
+  <% @product.errors.full_messages.each do |error| %>
+    <%= error %> <br>
+  <% end %>
+</div>
+
 <div class="row">
   <div class="col-md-3"></div>
   <div class="form-box col-md-6">
     <%= form_tag "/store/#{@product.id}", method: :patch do %>
 
       <%= label_tag :name %>
-      <%= text_field_tag :name, @product.name  %> <br>
+      <%= text_field_tag :name, @product.name %> <br>
 
       <%= label_tag :price %>
       <%= text_field_tag :price, @product.price %> <br>
 
-      <%= label_tag :image %>
-      <%= text_field_tag :image, @product.image %> <br>
+      <% @product.images.each do |img| %>
+        <%= label_tag :image %>
+        <%= text_field_tag :image, img.src %> <br>
+      <% end %>
       
       <%= label_tag :description %>
       <%= text_field_tag :description, @product.description %> <br>

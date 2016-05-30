@@ -1,23 +1,25 @@
 class CartedProduct < ActiveRecord::Base
+
+  validates :quantity, presence: true
+  validates :quantity, numericality: true
+  validates :quantity, numericality: { greater_than: 0 }
+  validates :product_id, presence: true
+  validates :user_id, presence: true
+
   belongs_to :product
   belongs_to :user
   belongs_to :order
 
-  def calc_subtotal(product_price)
-    self.subtotal = product_price * quantity
+  def subtotal
+    product_price * quantity
   end
 
-  def calc_tax
-    self.tax = subtotal * 0.09
+  def price
+    product.price
   end
 
-  def calc_total
-    self.total = subtotal + tax
+  def name
+    product.name
   end
 
-  def calc_prices(product_price)
-    calc_subtotal(product_price)
-    calc_tax
-    calc_total
-  end
 end
