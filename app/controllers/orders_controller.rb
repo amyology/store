@@ -12,12 +12,10 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.create(user_id: current_user.id)
-    ordered_items = current_user.carted_products
+    ordered_products = current_user.carted_items
 
-    carted_products = current_user.carted_items
-
-    ordered_items.each do |product|
-      ordered_items.update(status: "purchased", order_id: @order.id)
+    ordered_products.each do |item|
+      item.update(status: 'purchased', order_id: @order.id)
     end
 
     @order.calc_prices(@order.carted_products)

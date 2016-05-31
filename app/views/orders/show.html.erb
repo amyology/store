@@ -1,20 +1,18 @@
-<div class="individual center">
+<div class="individual">
 
-User: <%= @order.user.email %><br>
+<h2>Your Order</h2>
 
+<b>Order number</b>: <%= @order.id %><br>
+<b>Customer</b>: <%= @order.user.email %><br><br>
 
-<% ordered_products.each do |item| %>
-  <%= item.name %>
-  <%= item.quantity %>
-  <%= item.price %>
+<% @ordered_products.each do |item| %>
+  <b>Product</b>: <%= item.name %> <br>
+  <b>Quantity</b>: <%= item.quantity %> <br>
+  <b>Price</b>: <%= item.price %><br><br>
 <% end %>
 
-
-Product: <%= @order.product.name %><br>
-Quantity purchased: <%= @order.quantity %><br>
-
-Subtotal: <%= number_to_currency(@order.subtotal) %><br>
-Tax: <%= number_to_currency(@order.tax) %><br>
-Total: <%= number_to_currency(@order.total) %><br>
+<b>Subtotal</b>: <%= number_to_currency(@order.subtotal) %><br>
+<b>Tax</b>: <%= number_to_currency(@order.tax) %><br>
+<b>Total</b>: <%= number_to_currency(@order.total) %><br>
 
 </div>

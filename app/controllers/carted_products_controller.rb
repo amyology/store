@@ -3,7 +3,7 @@ class CartedProductsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @cart = current_user.carted_items
+    @cart = current_user.carted_products.where(status: 'carted')
 
     if user_signed_in? && current_user.carted_items.count > 0
       @cart = current_user.carted_items
@@ -14,14 +14,11 @@ before_action :authenticate_user!
   end
 
   def create
-    @carted_product = CartedProduct.new(
+    @carted_product = CartedProduct.create(
       quantity: params[:quantity], 
       user_id: current_user.id, 
       product_id: params[:product_id],
       status: "carted")
-
-    # @carted_product.calc_prices(@calc.product.price)
-    @carted_product.save
 
     flash[:success] = "Added to cart."
     redirect_to "/cart"

@@ -11,7 +11,7 @@ class CartedProduct < ActiveRecord::Base
   belongs_to :order
 
   def subtotal
-    product_price * quantity
+    price * quantity
   end
 
   def price

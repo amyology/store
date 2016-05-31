@@ -6,10 +6,10 @@ class Order < ActiveRecord::Base
   has_many :carted_products
   has_many :products, through: :carted_products
 
-  def calc_subtotal(product_price)
-    self.total = 0
-    cart_items.each do |cart_item|
-      self.subtotal += cart_item.product.price * cart_item.quantity
+  def calc_subtotal(cart)
+    self.subtotal = 0
+    cart.each do |item|
+      self.subtotal += item.product.price * item.quantity
     end
   end
 
@@ -21,9 +21,10 @@ class Order < ActiveRecord::Base
     self.total = subtotal + tax
   end
 
-  def calc_prices(product_price)
-    calc_subtotal(product_price)
+  def calc_prices(cart)
+    calc_subtotal(cart)
     calc_tax
     calc_total
   end
+
 end
