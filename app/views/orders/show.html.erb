@@ -6,6 +6,7 @@
 <b>Customer</b>: <%= @order.user.email %><br><br>
 
 <% @ordered_products.each do |item| %>
+  <img src="<%= item.product.img_preview %>" class="thumbnail"><br>
   <b>Product</b>: <%= item.name %> <br>
   <b>Quantity</b>: <%= item.quantity %> <br>
   <b>Price</b>: <%= item.price %><br><br>
@@ -13,6 +14,6 @@
 
 <b>Subtotal</b>: <%= number_to_currency(@order.subtotal) %><br>
 <b>Tax</b>: <%= number_to_currency(@order.tax) %><br>
-<b>Total</b>: <%= number_to_currency(@order.total) %><br>
+<b>Total: <%= number_to_currency(@order.total) %></b><br>
 
 </div>

@@ -13,14 +13,14 @@
   <div class="row description-box">
     <div class="col-lg-6 col-md-6 col-sm-6">
       <span id="bigger-text"><%= @product.name.upcase %></span> <br>
-      Product Description: <i><%= @product.description %></i> <br>
-      Supplier: <%= @product.supplier.name %> <br>
-      Category: 
+      <b>Product Description</b>: <i><%= @product.description %></i> <br>
+      <b>Supplier</b>: <%= @product.supplier.name %> <br>
+      <b>Category</b>: 
       <% @product.categories.each do |category_name| %>
         <%= category_name.name %>
       <% end %><br><br>
-      Price: <%= number_to_currency(@product.price) %> <br>
-      Tax: <%= number_to_currency(@product.tax) %> <br>
+      <b>Price</b>: <%= number_to_currency(@product.price) %> <br>
+      <b>Tax</b>: <%= number_to_currency(@product.tax) %> <br>
       <b>Total: <%= number_to_currency(@product.total) %></b> <br><br>
       <font color="red"><%= @product.sale_message %></font><br>
     </div>

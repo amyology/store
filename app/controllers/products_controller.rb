@@ -28,7 +28,7 @@ before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destr
 
     if sale
       @products = @products.where("price < ?", sale)
-    end  
+    end
   end
 
   def show
@@ -54,12 +54,10 @@ before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destr
     )
 
     if @product.save
-
       Image.create(src: params[:image], product_id: @product.id) if params[:image] != ""
 
       flash[:success] = "Successfully created."
       redirect_to "/store/#{@product.id}"
-
     else
       render :new
     end
@@ -71,18 +69,15 @@ before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destr
 
   def update
     @product = Product.find(params[:id])
-    @product.update(
+    if @product.update(
       name: params[:name],
       price: params[:price],
       description: params[:description],
       inventory: params[:inventory]
     )
 
-    if @product.save
-
       flash[:success] = "Successfully updated."
       redirect_to "/store/#{@product.id}"
-
     else 
       render :new
     end

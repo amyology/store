@@ -19,10 +19,10 @@
       <%= label_tag :price %>
       <%= text_field_tag :price, @product.price %> <br>
 
-      <% @product.images.each do |img| %>
+<!--       <% @product.images.each do |img| %>
         <%= label_tag :image %>
         <%= text_field_tag :image, img.src %> <br>
-      <% end %>
+      <% end %> -->
       
       <%= label_tag :description %>
       <%= text_field_tag :description, @product.description %> <br>
@@ -30,7 +30,7 @@
       <%= label_tag :inventory %>
       <%= text_field_tag :inventory, @product.inventory %> <br>
 
-      <%= submit_tag 'Update' %>
+      <%= submit_tag 'Update', class: "btn btn-default" %>
     <% end %>
   </div>
   <div class="col-md-3"></div>

@@ -20,6 +20,7 @@ before_action :authenticate_user!
       product_id: params[:product_id],
       status: "carted")
 
+    session[:cart_count] = nil
     flash[:success] = "Added to cart."
     redirect_to "/cart"
   end
@@ -28,6 +29,7 @@ before_action :authenticate_user!
     @carted_product = CartedProduct.find(params[:id])
     @carted_product.update(status: "removed")
 
+    session[:cart_count] = nil
     flash[:success] = "Item Removed"
     redirect_to '/cart'
   end

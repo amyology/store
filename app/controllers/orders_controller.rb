@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
     @order.calc_prices(@order.carted_products)
     @order.save
 
+    session[:cart_count] = nil
     flash[:success] = "Success."
     redirect_to "/orders/#{@order.id}"
   end
