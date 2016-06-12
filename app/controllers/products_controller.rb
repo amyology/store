@@ -79,7 +79,7 @@ before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destr
       flash[:success] = "Successfully updated."
       redirect_to "/store/#{@product.id}"
     else 
-      render :new
+      render :edit
     end
   end
 
