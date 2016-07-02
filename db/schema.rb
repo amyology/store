@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 20160529164556) do
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "number"
   end
 
   create_table "users", force: :cascade do |t|
